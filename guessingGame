@@ -1,0 +1,71 @@
+/* Standard number guessing game, 1 from 25, computer vs user.
+Good take-aways for future reference.
+1. Random Number Generation
+2. User Input
+3. Comparison/Output
+4 Repetition/if-else loop
+5. Program Termination
+*/
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+
+int main() {
+    srand(time(0));
+
+    int x, a;
+    std::string c;
+
+    std::cout << "GUESS   " << "05:06 PM        19-0CT-74\n";
+    std::cout << "PICK A NUMBER FROM 0 TO 25\n";
+
+    do {
+        x = rand() % 26;
+
+        std::cout << "? ";
+        std::cin >> a;
+
+        if (a > 25) {
+            std::cout << "NUMBER TOO LARGE--TRY AGAIN\n";
+            continue;
+        }
+
+        if (a < 0) {
+            std::cout << "NUMBER TOO SMALL--TRY AGAIN!\n";
+            continue;
+        }
+
+        std::cout << "YOU PICKED " << a << "!\n";
+        std::cout << "THE COMPUTER PICKED " << x << "!\n";
+
+        int diff = abs(x - a);
+        std::cout << "YOU MISSED BY " << diff << "!\n";
+
+        if (diff == 0) {
+            std::cout << "YOU WON !!!!!!\n";
+        } else {
+            std::cout << "YOU LOST!!\n";
+        }
+
+        std::cout << "DO YOU WANT TO TRY AGAIN !? ";
+        std::cin >> c;
+
+        if (c[0] == 'Y' || c[0] == 'y') {
+            std::cout << "AGAIN!\n";
+        } else if (c[0] == 'N' || c[0] == 'n') {
+            std::cout << "THAT'S ALL!\n";
+            break;
+        } else {
+            std::cout << "WHAT--NOT IN CORRECT FORM--PLEASE RETYPE?????\n";
+            std::cout << "DO YOU WANT TO TRY AGAIN !? ";
+            std::cin >> c;
+        }
+
+    } while (c[0] == 'Y' || c[0] == 'y');
+
+    std::cout << "EYE!!!\n";
+
+    return 0;
+}
